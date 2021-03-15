@@ -83,7 +83,7 @@
                 android:id="@+id/priaRadioButton"
                 android:layout_width="113dp"
                 android:layout_height="wrap_content"
-                android:text="@string/Pria" />
+                android:text="@string/pria" />
 
             <RadioButton
                 android:id="@+id/wanitaRadioButton"
@@ -140,11 +140,22 @@
             android:id="@+id/saranButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="56dp"
             android:layout_marginTop="16dp"
             android:text="@string/lihat_saran"
-            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/kategoriTextView" />
+
+        <Button
+            android:id="@+id/shareButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:text="@string/bagikan"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/saranButton"
+            app:layout_constraintTop_toTopOf="@+id/saranButton" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </ScrollView>
