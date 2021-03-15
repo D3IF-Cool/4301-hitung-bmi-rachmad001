@@ -6,5 +6,13 @@
     <fragment
         android:id="@+id/hitungFragment"
         android:name="org.d3if4025.hitungbmi.ui.HitungFragment"
-        android:label="HitungFragment" />
+        android:label="HitungFragment" >
+        <action
+            android:id="@+id/action_hitungFragment_to_saranFragment"
+            app:destination="@id/saranFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/saranFragment"
+        android:name="org.d3if4025.hitungbmi.ui.SaranFragment"
+        android:label="SaranFragment" />
 </navigation>
