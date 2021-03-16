@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.text.TextUtils
 import android.view.*
 import android.widget.Toast
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
@@ -16,14 +17,21 @@ class HitungFragment : Fragment() {
 
     private lateinit var binding: FragmentHitungBinding
     private lateinit var kategoriBmi: KategoriBmi
-
+    private var bmi = 1f
+    private var status =  ""
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = FragmentHitungBinding.inflate(layoutInflater, container, false)
         binding.button.setOnClickListener { hitungBmi() }
         binding.saranButton.setOnClickListener { view: View ->
-            view.findNavController().navigate(HitungFragmentDirections
-                .actionHitungFragmentToSaranFragment(kategoriBmi)
-            )
+            val bundle = Bundle()
+            when {
+                kategoriBmi == KategoriBmi.GEMUK -> bundle.putString("kategori", "gemuk")
+                kategoriBmi == KategoriBmi.KURUS -> bundle.putString("kategori", "kurus")
+                else -> bundle.putString("kategori", "ideal")
+            }
+            bundle.putFloat("bmi", bmi)
+            bundle.putString("status", status)
+            view.findNavController().navigate(R.id.action_hitungFragment_to_saranFragment, bundle)
         }
         binding.shareButton.setOnClickListener { shareData() }
         setHasOptionsMenu(true)
@@ -63,7 +71,7 @@ class HitungFragment : Fragment() {
             return
         }
         val isMale = selectedId == R.id.priaRadioButton
-        val bmi = berat.toFloat() / (tinggiCm * tinggiCm)
+        bmi = berat.toFloat() / (tinggiCm * tinggiCm)
         val kategori = getKategori(bmi, isMale)
 
         binding.bmiTextView.text = getString(R.string.bmi_x, bmi)
@@ -113,6 +121,7 @@ class HitungFragment : Fragment() {
             KategoriBmi.IDEAL -> R.string.ideal
             KategoriBmi.GEMUK -> R.string.gemuk
         }
-        return getString(stringRes)
+        status = getString(stringRes)
+        return status
     }
 }
