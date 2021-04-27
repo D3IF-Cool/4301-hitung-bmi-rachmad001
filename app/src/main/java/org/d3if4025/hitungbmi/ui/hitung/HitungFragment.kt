@@ -25,17 +25,6 @@ class HitungFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = FragmentHitungBinding.inflate(layoutInflater, container, false)
         binding.button.setOnClickListener { hitungBmi() }
-//        binding.saranButton.setOnClickListener { view: View ->
-//            val bundle = Bundle()
-//            when {
-//                kategoriBmi == KategoriBmi.GEMUK -> bundle.putString("kategori", "gemuk")
-//                kategoriBmi == KategoriBmi.KURUS -> bundle.putString("kategori", "kurus")
-//                else -> bundle.putString("kategori", "ideal")
-//            }
-//            bundle.putFloat("bmi", bmi)
-//            bundle.putString("status", status)
-//            view.findNavController().navigate(R.id.action_hitungFragment_to_saranFragment, bundle)
-//        }
         binding.saranButton.setOnClickListener { viewModel.mulaiNavigasi() }
         binding.shareButton.setOnClickListener { shareData() }
         setHasOptionsMenu(true)
